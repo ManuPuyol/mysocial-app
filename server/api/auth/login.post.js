@@ -51,6 +51,8 @@ export default defineEventHandler(async (event) => {
   });
   //add http only cookie
   sendRefreshToken(event, refreshToken);
+
+  
   return {
     access_token: accessToken,
     user: userTransformer(user),
