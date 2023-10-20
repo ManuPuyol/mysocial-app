@@ -1,0 +1,19 @@
+import formidable from "formidable";
+
+export default defineEventHandler(async (event) => {
+  const form = formidable({});
+  const response = await new Promise((resolve, reject) => {
+    form.parse(event.node.req, (err, fields, files) => {
+        console.log(event.node.req)
+      if (err) {
+        reject(err);
+      }
+      resolve({ fields, files });
+    });
+  });
+ const {fields, files} = response
+ const userId = event.context?.auth?.user?.id
+  return {
+    userId: userId === undefined,
+  };
+});
