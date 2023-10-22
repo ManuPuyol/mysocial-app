@@ -3,7 +3,7 @@ import { decodeAccessToken } from "../utils/jwt";
 import { sendError } from "h3";
 import { getUserById } from "../db/users";
 export default defineEventHandler(async (event) => {
-  const endpoints = ["/api/auth/user"];
+  const endpoints = ["/api/auth/user",'/api/user/posts'];
   const isHandledByThisMiddleware = endpoints.some((endpoint) => {
     const pattern = new UrlPattern(endpoint);
     return pattern.match(event.node.req.url);
