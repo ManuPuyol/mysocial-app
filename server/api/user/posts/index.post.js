@@ -2,11 +2,11 @@ import formidable from "formidable";
 import { createPost } from "~/server/db/posts";
 import { postTransformer } from "~/server/transformers/post";
 import { createMediaFile } from "~/server/db/mediaFiles";
+import { uploadCloudinary } from "~/server/utils/cloudinary";
 export default defineEventHandler(async (event) => {
   const form = formidable({});
   const response = await new Promise((resolve, reject) => {
     form.parse(event.node.req, (err, fields, files) => {
-      console.log(event.node.req);
       if (err) {
         reject(err);
       }
@@ -14,7 +14,6 @@ export default defineEventHandler(async (event) => {
     });
   });
   const { fields, files } = response;
-  console.log(fields);
   const userId = event.context?.auth?.user?.id;
   const postData = {
     text: fields.text[0],
@@ -22,16 +21,19 @@ export default defineEventHandler(async (event) => {
   };
   const post = await createPost(postData);
   const filePromises = Object.keys(files).map(async (key) => {
+    const file = files[key][0];
+    const cloudinaryResource = await uploadCloudinary(file.filepath)
+
     return createMediaFile({
-      url: "",
-      providerPublicId: "random_id",
+      url: cloudinaryResource.secure_url,
+      providerPublicId: cloudinaryResource.public_id,
       userId: userId,
       postId: post.id,
     });
   });
   await Promise.all(filePromises);
   return {
-    //post: postTransformer(post) ,
-    files,
+    post: postTransformer(post) ,
+    //files,
   };
 });
