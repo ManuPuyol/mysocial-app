@@ -23,8 +23,8 @@
         </template>
         <template v-slot:name> Explore </template>
       </SidebarLeftTab>
-      
-        <SidebarLeftTab>
+
+      <SidebarLeftTab>
         <template v-slot:icon>
           <BellIcon />
         </template>
@@ -60,6 +60,20 @@
         </template>
         <template v-slot:name> More </template>
       </SidebarLeftTab>
+      <div class="hidden xl:block">
+        <UIButton liquid size="lg"
+          ><span class="font-bold">Post</span></UIButton
+        >
+      </div>
+      <div class="block xl:hidden">
+        <UIButton  size="lg"
+          >
+          <div class="w-6 h-6 font-bold">
+            <PencilIcon/>
+          </div>
+          </UIButton
+        >
+      </div>
     </div>
   </div>
 </template>
@@ -73,6 +87,7 @@ import {
   DocumentTextIcon,
   UserIcon,
   BeakerIcon,
+  PencilIcon
 } from "@heroicons/vue/24/outline";
 
 const { defaultTransition } = useTailwindConfig();
