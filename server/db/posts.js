@@ -5,3 +5,8 @@ export const createPost = (postData) => {
         data: postData
     })
 }
+export const getPosts = (params = {}) => {
+    return prisma.post.findMany({
+        ...params
+    })
+}

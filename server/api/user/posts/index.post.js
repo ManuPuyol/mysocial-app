@@ -19,11 +19,16 @@ export default defineEventHandler(async (event) => {
     text: fields.text[0],
     authorId: userId,
   };
+  const replyTo = fields.replyTo[0]
+  if(replyTo && replyTo !== 'null') {
+    postData.replyToId = replyTo
+  }
   const post = await createPost(postData);
+
   const filePromises = Object.keys(files).map(async (key) => {
     const file = files[key][0];
     const cloudinaryResource = await uploadCloudinary(file.filepath)
-
+    
     return createMediaFile({
       url: cloudinaryResource.secure_url,
       providerPublicId: cloudinaryResource.public_id,

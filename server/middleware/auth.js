@@ -3,7 +3,7 @@ import { decodeAccessToken } from "../utils/jwt";
 import { sendError } from "h3";
 import { getUserById } from "../db/users";
 export default defineEventHandler(async (event) => {
-  const endpoints = ["/api/auth/user",'/api/user/posts'];
+  const endpoints = ["/api/auth/user", "/api/user/posts", "/api/posts"];
   const isHandledByThisMiddleware = endpoints.some((endpoint) => {
     const pattern = new UrlPattern(endpoint);
     return pattern.match(event.node.req.url);
@@ -11,7 +11,7 @@ export default defineEventHandler(async (event) => {
   if (!isHandledByThisMiddleware) {
     return;
   }
-  const token = event.node.req.headers['authorization']?.split(' ')[1];
+  const token = event.node.req.headers["authorization"]?.split(" ")[1];
   const decoded = decodeAccessToken(token);
   if (!decoded) {
     return sendError(

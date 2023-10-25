@@ -44,8 +44,8 @@ model Post {
   //Author
   author     User     @relation(fields: [authorId], references: [id])
   authorId   String   @db.ObjectId
-  replayToId String?  @db.ObjectId
-  replayTo   Post?    @relation("replies", fields: [replayToId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  replyToId String?  @db.ObjectId
+  replyTo   Post?    @relation("replies", fields: [replyToId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   replies    Post[]   @relation("replies")
 
   //MediaFiles
