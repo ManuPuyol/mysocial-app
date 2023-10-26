@@ -1,16 +1,29 @@
-import { getPosts } from "~/server/db/posts"
-import { postTransformer } from "~/server/transformers/post"
-export default defineEventHandler(async(event)=> {
-
-    const posts = await getPosts({
+import { getPosts } from "~/server/db/posts";
+import { postTransformer } from "~/server/transformers/post";
+export default defineEventHandler(async (event) => {
+  const posts = await getPosts({
+    include: {
+      author: true,
+      mediaFiles: true,
+      replies: {
         include:{
-            author:true,
-            mediaFiles:true,
-            replies:true
+            author:true
         }
-    })
+      },
+      replyTo: {
+        include:{
+            author:true
+        }
+      },
+    },
+    orderBy:[
+        {
+            createdAt: 'desc'
+        }
+    ]
+  });
 
-    return{
-        posts: posts.map(postTransformer)
-    }
-})
+  return {
+    posts: posts.map(postTransformer),
+  };
+});
