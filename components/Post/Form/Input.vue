@@ -12,7 +12,7 @@
         <textarea
           v-model="text"
           class="w-full h-10 text-lg text-gray-900 placeholder:text-gray-400 bg-transparent border-0 dark:text.white focus:ring-0"
-          placeholder="What´s happening ?"
+          :placeholder="props.placeholder"
         ></textarea>
       </div>
     </div>
@@ -111,7 +111,7 @@
       </div>
       <div class="ml-auto">
         <UIButton size="sm" :disabled="isDisabled" @onClick="handleFormSubmit">
-          <span class="font-bold" > Post </span>
+          <span class="font-bold"> Post </span>
         </UIButton>
         <!--<button @click="handleFormSubmit">Post</button>-->
       </div>
@@ -125,10 +125,14 @@ const selectedFile = ref(null);
 const inputImageUrl = ref(null);
 const text = ref("");
 const emits = defineEmits(["onSubmit"]);
-const isDisabled = computed(()=>text.value === '')
+const isDisabled = computed(() => text.value === "");
 const props = defineProps({
   user: {
     type: Object,
+    required: true,
+  },
+  placeholder: {
+    type: String,
     required: true,
   },
 });

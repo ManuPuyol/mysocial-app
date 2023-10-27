@@ -13,6 +13,9 @@
       >
         <img :src="image.url" alt="" class="w-full rounded-2xl"/>
       </div>
+      <div class="mt-2">
+       <PostItemActions :post="post"/>
+      </div>
     </div>
   </div>
 </template>

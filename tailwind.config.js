@@ -1,6 +1,15 @@
 module.exports = {
   darkMode: 'class',
-
+  safelist: [
+    {
+      pattern: /text-(red|orange|blue|yellow|green)-(100|400)/,
+      variants: ['group-hover']
+    },
+    {
+      pattern: /bg-(red|orange|blue|yellow|green)-(100|400)/,
+      variants: ['group-hover']
+    }
+  ],
   theme: {
 
     screens: {

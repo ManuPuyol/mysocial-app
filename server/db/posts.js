@@ -10,3 +10,13 @@ export const getPosts = (params = {}) => {
         ...params
     })
 }
+export const getPostById = (postId, params = {}) => {
+    return prisma.post.findUnique({
+        ...params,
+        where: {
+            ...params.where,
+            id: postId
+        }
+        
+    })
+}

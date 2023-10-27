@@ -4,7 +4,7 @@
         <UISpinner/>
     </div>
     <div v-else>
-        <PostFormInput :user="props.user" @onSubmit="handleFormSubmit" />
+        <PostFormInput :placeholder="props.placeholder" :user="props.user" @onSubmit="handleFormSubmit" />
 
     </div>
   </div>
@@ -17,6 +17,10 @@ const props = defineProps({
     type: Object,
     required: true,
   },
+  placeholder: {
+    type: String,
+    default: 'What´s happening ?'
+  }
 });
 async function handleFormSubmit(data) {
     loading.value = true;
