@@ -1,18 +1,20 @@
 <template>
   <div class="flex p-4">
-    <div></div>
     <img class="w-10 h-10 rounded-full" :src="author.profileImage" alt="" />
     <div class="ml-3">
-      <span class="font-medium text-gray-800 dark:text-white">{{ author.name }}</span>
+      <span class="font-medium text-gray-800 dark:text-white">{{
+        author.name
+      }}</span>
       <span class="ml-3 text-sm font-medium text-gray-400">
-            <nuxt-link to="#">{{ author.handle }}</nuxt-link>
-            . {{ props.post.postedAtHuman }}
+        <nuxt-link to="#">{{ author.handle }}</nuxt-link>
+        . {{ props.post.postedAtHuman }}
       </span>
       <p v-if="props.post.replyTo" class="text-sm">
         <span class="text-gray-500">Replying to </span>
-        <nuxt-link :to="replyToPostUrl" class="text-orange-400">{{ props.post.replyTo.author.handle }}</nuxt-link>
+        <nuxt-link :to="replyToPostUrl" class="text-orange-400">{{
+          props.post.replyTo.author.handle
+        }}</nuxt-link>
       </p>
-      
     </div>
   </div>
 </template>
@@ -24,6 +26,5 @@ const props = defineProps({
   },
 });
 const author = props.post.author;
-const replyToPostUrl = computed(()=>`/status/${props.post?.replyTo?.id}`)
-
+const replyToPostUrl = computed(() => `/status/${props.post?.replyTo?.id}`);
 </script>

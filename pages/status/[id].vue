@@ -20,9 +20,7 @@ watch(
 );
 
 function getPostIdFromRoute() {
-  console.log(useRoute().params);
-
-  return useRoute().params.id;
+  return useRouter().currentRoute.value.params.id;
 }
 async function getPost() {
   loading.value = true;
