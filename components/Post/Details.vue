@@ -1,7 +1,7 @@
 <template>
     <div>
         <PostItem :post="props.post" />
-        <PostForm placeholder="Post your reply" :user="props.user"/>
+        <PostForm placeholder="Post your reply" :user="props.user" :reply-to="props.post" @on-success="handleFormSuccess"/>
         <PostListFeed :posts="replies"/>
     </div>
 </template>
@@ -16,5 +16,10 @@ const props = defineProps({
         required: true
     }
 })
-const replies = computed(()=> props.post?.replies || [])
+const replies = computed(()=> props.post?.replies || []);
+function handleFormSuccess(post) {
+    navigateTo({
+        path:`/status/${post.id}`
+    })
+}
 </script>

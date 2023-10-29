@@ -10,6 +10,7 @@
   </div>
 </template>
 <script setup>
+const emits = defineEmits(['onSuccess'])
 const loading = ref(false)
 const { postPost } = usePosts();
 const props = defineProps({
@@ -20,6 +21,10 @@ const props = defineProps({
   placeholder: {
     type: String,
     default: 'What´s happening ?'
+  },
+  replyTo: {
+    type: Object,
+    default: null
   }
 });
 async function handleFormSubmit(data) {
@@ -27,9 +32,11 @@ async function handleFormSubmit(data) {
   try {
     const response = await postPost({
         text: data.text,
-        mediaFiles: data.mediaFiles
+        mediaFiles: data.mediaFiles,
+        replyTo: props.replyTo?.id
     });
-    console.log(response);
+    emits('onSuccess',response.post)
+
   } catch (error) {
     console.log(error);
   } finally {

@@ -1,8 +1,8 @@
 <template>
   <div>
     <PostItemHeader :post="props.post"/>
-    <div class="ml-16">
-      <p class="flex-shrink w-auto font-medium text-gray-800 dark:text-white">
+    <div :class="postBodyWrapper">
+      <p class="flex-shrink w-auto font-medium text-gray-800 dark:text-white" :class="textSize">
         {{ props.post.text }}
       </p>
       <div
@@ -14,7 +14,7 @@
         <img :src="image.url" alt="" class="w-full rounded-2xl"/>
       </div>
       <div class="mt-2">
-       <PostItemActions :post="post"/>
+       <PostItemActions :post="post" :compact="props.compact"/>
       </div>
     </div>
   </div>
@@ -26,5 +26,11 @@ const props = defineProps({
     type: Object,
     required: true,
   },
+  compact: {
+    type: Boolean,
+    default: false
+  }
 });
+const postBodyWrapper = computed(()=> props.compact ? 'ml-16' : 'ml-2 mt-4');
+const textSize = computed(()=> props.compact ? 'text-base' : 'text-2xl')
 </script>

@@ -5,6 +5,7 @@ import { createMediaFile } from "~/server/db/mediaFiles";
 import { uploadCloudinary } from "~/server/utils/cloudinary";
 export default defineEventHandler(async (event) => {
   const form = formidable({});
+
   const response = await new Promise((resolve, reject) => {
     form.parse(event.node.req, (err, fields, files) => {
       if (err) {
@@ -13,14 +14,19 @@ export default defineEventHandler(async (event) => {
       resolve({ fields, files });
     });
   });
+
   const { fields, files } = response;
+
   const userId = event.context?.auth?.user?.id;
+  
   const postData = {
     text: fields.text[0],
     authorId: userId,
   };
-  const replyTo = fields.replyTo[0]
-  if(replyTo && replyTo !== 'null') {
+  
+  const replyTo = fields.replyTo[0];
+
+  if(replyTo && replyTo !== 'null' && replyTo !== 'undefined') {
     postData.replyToId = replyTo
   }
   const post = await createPost(postData);

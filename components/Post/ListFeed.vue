@@ -9,8 +9,9 @@
       :class="[krakenBorderColor, defaultTransition]"
       v-for="post in props.posts"
       :key="post.id"
+      @click="redirect(post)"
     >
-      <PostItem :post="post" />
+      <PostItem :post="post" compact />
     </div>
   </div>
 </template>
@@ -24,4 +25,8 @@ const props = defineProps({
   },
 });
 const isEmptyArray = computed(() => props.posts.length === 0);
+
+function redirect(post) {
+  navigateTo(`/status/${post.id}`);
+}
 </script>
