@@ -1,6 +1,6 @@
 <template>
   <div class="flex items-center justify-around">
-    <PostItemActionsIcon color="orange" :size="size">
+    <PostItemActionsIcon color="orange" @on-click="emits('onCommentClick')" :size="size">
       <template v-slot:icon="{ classes }">
         <div>
           <ChatBubbleLeftEllipsisIcon :class="classes" />
@@ -45,6 +45,8 @@ import {
   HeartIcon,
   ArrowUpTrayIcon,
 } from "@heroicons/vue/24/outline";
+
+const emits = defineEmits(['onCommentClick'])
 
 const props = defineProps({
   post: {

@@ -61,12 +61,12 @@
         <template v-slot:name> More </template>
       </SidebarLeftTab>
       <div class="hidden xl:block">
-        <UIButton liquid size="lg"
+        <UIButton liquid size="lg" @on-click="emits('onPost')"
           ><span class="font-bold">Post</span></UIButton
         >
       </div>
       <div class="block xl:hidden">
-        <UIButton  size="lg"
+        <UIButton size="lg" @on-click="emits('onPost')"
           >
           <div class="w-6 h-6 font-bold">
             <PencilIcon/>
@@ -91,4 +91,5 @@ import {
 } from "@heroicons/vue/24/outline";
 
 const { defaultTransition } = useTailwindConfig();
+const emits = defineEmits(['onPost'])
 </script>

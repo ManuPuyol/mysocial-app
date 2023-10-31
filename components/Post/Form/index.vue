@@ -4,6 +4,7 @@
         <UISpinner/>
     </div>
     <div v-else>
+        <PostItem :post="props.replyTo" v-if="props.replyTo && props.showReply" hideActions/>
         <PostFormInput :placeholder="props.placeholder" :user="props.user" @onSubmit="handleFormSubmit" />
 
     </div>
@@ -25,6 +26,10 @@ const props = defineProps({
   replyTo: {
     type: Object,
     default: null
+  },
+  showReply: {
+    type: Boolean,
+    default: false
   }
 });
 async function handleFormSubmit(data) {
@@ -35,7 +40,7 @@ async function handleFormSubmit(data) {
         mediaFiles: data.mediaFiles,
         replyTo: props.replyTo?.id
     });
-    emits('onSuccess',response.post)
+    emits('onSuccess', response.post)
 
   } catch (error) {
     console.log(error);

@@ -5,7 +5,7 @@
         <Title>Home / kraken</Title>
       </Head>
       <div class="border-b" :class="krakenBorderColor">
-        <PostForm :user="user" />
+        <PostForm :user="user" @on-success="handleFormSuccess"/>
       </div>
       <PostListFeed :posts="homePosts" />
     </MainSection>
@@ -32,4 +32,9 @@ onBeforeMount(async () => {
     loading.value = false;
   }
 });
+function handleFormSuccess(post) {
+  navigateTo({
+    path: `/status/${post.id}`
+  })
+}
 </script>

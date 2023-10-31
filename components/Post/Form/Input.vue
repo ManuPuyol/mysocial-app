@@ -120,12 +120,16 @@
 </template>
 <script setup>
 const { krakenBorderColor } = useTailwindConfig();
+
 const imageInput = ref();
 const selectedFile = ref(null);
 const inputImageUrl = ref(null);
 const text = ref("");
+
 const emits = defineEmits(["onSubmit"]);
+
 const isDisabled = computed(() => text.value === "");
+
 const props = defineProps({
   user: {
     type: Object,
@@ -147,11 +151,15 @@ function handleImageClick() {
 }
 function handleImageChange() {
   const file = event.target.files[0];
+
   selectedFile.value = file;
+
   const reader = new FileReader();
+
   reader.onload = (event) => {
     inputImageUrl.value = event.target.result;
   };
+
   reader.readAsDataURL(file);
 }
 </script>

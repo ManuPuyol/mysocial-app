@@ -1,9 +1,7 @@
 <template>
   <div :class="{ dark: darkMode }">
     <div class="bg-white dark:bg-dim-900">
-
-      <LoadingPage v-if="isAuthLoading"/>
-      
+      <LoadingPage v-if="isAuthLoading" />
 
       <!--App-->
       <div v-else-if="user" class="min-h-full">
@@ -13,7 +11,7 @@
           <!--left sidebar-->
           <div class="hidden md:block xs-col-span-1 xl:col-span-2">
             <div class="sticky top-0"></div>
-            <SidebarLeft />
+            <SidebarLeft @on-post="handleOpenPostModal" />
           </div>
 
           <!--main content-->
@@ -29,7 +27,10 @@
           </div>
         </div>
       </div>
-      <AuthPage v-else></AuthPage>
+      <AuthPage v-else />
+      <UIModal :isOpen="postPostModal" @on-close="handleModalClose">
+        <PostForm :replyTo="replyPost" showReply :user="user" @on-success="handleFormSuccess" />
+      </UIModal>
     </div>
   </div>
 </template>
@@ -38,7 +39,33 @@ const darkMode = ref(false);
 const { useAuthUser, initAuth, useAuthLoading } = useAuth();
 const isAuthLoading = useAuthLoading();
 const user = useAuthUser();
+const { closePostPostModal, usePostPostModal, openPostPostModal, useReplyPost } = usePosts();
+const postPostModal = usePostPostModal();
+const emitter = useEmitter();
+const replyPost = useReplyPost();
+
+
+emitter.$on('replyPost', (post) => {
+  openPostPostModal(post)
+});
+
 onBeforeMount(() => {
   initAuth();
 });
+
+function handleFormSuccess(post) {
+  closePostPostModal();
+
+  navigateTo({
+    path:`/status/${post.id}`
+  })
+}
+
+function handleModalClose() {
+  closePostPostModal();
+}
+
+function handleOpenPostModal() {
+  openPostPostModal(null);
+}
 </script>
