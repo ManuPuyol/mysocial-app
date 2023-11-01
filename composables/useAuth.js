@@ -62,7 +62,7 @@ export default () => {
     }
     const jwt = jwt_decode(authToken.value);
     const newRefreshTime = jwt.exp - 60000;
-    setTimeout(async() => {
+    setTimeout(async () => {
       await refreshToken();
       reRefreshAccessToken();
     }, newRefreshTime);
@@ -84,11 +84,27 @@ export default () => {
       }
     });
   };
+
+  const logout = () => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        await useFetchApi("/api/auth/logout", {
+          method: 'POST'
+        });
+        setToken(null);
+        setUser(null);
+        resolve();
+      } catch (error) {
+        reject(error)
+      }
+    });
+  };
   return {
     login,
     useAuthUser,
     useAuthToken,
     initAuth,
     useAuthLoading,
+    logout
   };
 };

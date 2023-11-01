@@ -11,7 +11,7 @@
           <!--left sidebar-->
           <div class="hidden md:block xs-col-span-1 xl:col-span-2">
             <div class="sticky top-0"></div>
-            <SidebarLeft @on-post="handleOpenPostModal" />
+            <SidebarLeft @on-post="handleOpenPostModal" @on-logout="handleUserLogout" :user="user" />
           </div>
 
           <!--main content-->
@@ -29,24 +29,36 @@
       </div>
       <AuthPage v-else />
       <UIModal :isOpen="postPostModal" @on-close="handleModalClose">
-        <PostForm :replyTo="replyPost" showReply :user="user" @on-success="handleFormSuccess" />
+        <PostForm
+          :replyTo="replyPost"
+          showReply
+          :user="user"
+          @on-success="handleFormSuccess"
+        />
       </UIModal>
     </div>
   </div>
 </template>
 <script setup>
 const darkMode = ref(false);
-const { useAuthUser, initAuth, useAuthLoading } = useAuth();
+const { useAuthUser, initAuth, useAuthLoading, logout } = useAuth();
 const isAuthLoading = useAuthLoading();
 const user = useAuthUser();
-const { closePostPostModal, usePostPostModal, openPostPostModal, useReplyPost } = usePosts();
+const {
+  closePostPostModal,
+  usePostPostModal,
+  openPostPostModal,
+  useReplyPost,
+} = usePosts();
 const postPostModal = usePostPostModal();
 const emitter = useEmitter();
 const replyPost = useReplyPost();
 
-
-emitter.$on('replyPost', (post) => {
-  openPostPostModal(post)
+emitter.$on("replyPost", (post) => {
+  openPostPostModal(post);
+});
+emitter.$on("toggleDarkMode", (post) => {
+  darkMode.value = !darkMode.value;
 });
 
 onBeforeMount(() => {
@@ -57,8 +69,8 @@ function handleFormSuccess(post) {
   closePostPostModal();
 
   navigateTo({
-    path:`/status/${post.id}`
-  })
+    path: `/status/${post.id}`,
+  });
 }
 
 function handleModalClose() {
@@ -67,5 +79,9 @@ function handleModalClose() {
 
 function handleOpenPostModal() {
   openPostPostModal(null);
+}
+
+function handleUserLogout(){
+  logout();
 }
 </script>

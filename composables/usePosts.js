@@ -35,11 +35,12 @@ export default () => {
     });
   };
 
-  const getHomePosts = () => {
+  const getPosts = (params = {}) => {
     return new Promise(async (resolve, reject) => {
       try {
         const response = await useFetchApi("/api/posts", {
           method: "GET",
+          params
         });
         resolve(response);
       } catch (error) {
@@ -47,6 +48,7 @@ export default () => {
       }
     });
   };
+
   const getPostById = (postId) => {
     return new Promise(async (resolve, reject) => {
       try {
@@ -59,7 +61,7 @@ export default () => {
   };
   return {
     postPost,
-    getHomePosts,
+    getPosts,
     getPostById,
     closePostPostModal,
     usePostPostModal,

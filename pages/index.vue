@@ -13,7 +13,7 @@
 </template>
 <script setup>
 const { krakenBorderColor } = useTailwindConfig();
-const { getHomePosts } = usePosts();
+const { getPosts } = usePosts();
 
 const loading = ref(false);
 const homePosts = ref([]);
@@ -24,7 +24,7 @@ const user = useAuthUser();
 onBeforeMount(async () => {
   loading.value = true;
   try {
-    const { posts } = await getHomePosts();
+    const { posts } = await getPosts();
     homePosts.value = posts;
   } catch (error) {
     console.log(error);

@@ -1,5 +1,11 @@
+
 <template>
-  <div>
+  <div class="w-full">
+    <div class="flex justify-center ">
+      <div class="w-20 h-20">
+        <LogoKraken/>
+      </div>
+    </div>
     <div class="pt-5 space-y-6">
       <UIInput
         label="Username"
@@ -12,9 +18,10 @@
         type="password"
         v-model="data.password"
       />
-      <div>
-        <button @click="handleLogin">Login</button>
-      </div>
+      <UIButton liquid @click="handleLogin" :disabled="isButtonDisabled">
+        Login
+      </UIButton>
+      
     </div>
   </div>
 </template>
@@ -39,4 +46,8 @@ async function handleLogin() {
     data.loading = false;
   }
 }
+
+const isButtonDisabled = computed(() => {
+  return (!data.username || !data.password) || data.loading
+})
 </script>
