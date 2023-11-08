@@ -19,7 +19,7 @@ export default () => {
     
     return new Promise(async (resolve, reject) => {
       try {
-        const data = await $fetch("/api/auth/login/", {
+        const data = await $fetch("/api/auth/login", {
           method: "post",
           body: {
             username,
