@@ -5,10 +5,10 @@ import { userTransformer } from "~/server/transformers/user";
 import { createRefreshToken } from "~/server/db/refreshTokens";
 import { sendError } from "h3";
 export default defineEventHandler(async (event) => {
-  console.log(event)
+  assertMethod(event, ['POST'])
   const body = await readBody(event);
   const { username, password } = body;
-  console.log("username y password: ",username, password)
+  
   if (!username || !password) {
     return sendError(
       event,
