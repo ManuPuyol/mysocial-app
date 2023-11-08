@@ -16,6 +16,7 @@ export default () => {
     authLoading.value = value;
   };
   const login = ({ username, password }) => {
+    
     return new Promise(async (resolve, reject) => {
       try {
         const data = await $fetch("/api/auth/login", {
@@ -25,6 +26,7 @@ export default () => {
             password,
           },
         });
+        
         setToken(data.access_token);
         setUser(data.user);
         resolve(true);
