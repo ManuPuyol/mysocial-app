@@ -13,7 +13,7 @@ export default defineNuxtConfig({
     cloudinaryApiKey: process.env.CLOUDINARY_API_KEY,
     cloudinaryApiSecret: process.env.CLOUDINARY_API_SECRET,
   },
-  routes: {
-    '/**': { cors: true }
+  routeRules: {
+    '/api/**': { cors: true, headers: { 'access-control-allow-methods': 'POST' } },
   }
 })
