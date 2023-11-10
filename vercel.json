@@ -1,5 +1,15 @@
 {
     "rewrites" : [
         {"source": "/(.*)", "destination": "/"}
-    ]
+    ],
+    "buildCommand": "nuxt build",
+    "routes": [
+          {
+            "src": "/api/auth/",
+            "methods": ["POST"],
+            "dest": "/login.post.js"
+          }
+         
+        ]
+      
 }
