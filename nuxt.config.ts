@@ -1,11 +1,11 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules:['@nuxtjs/tailwindcss'],
+  modules: ["@nuxtjs/tailwindcss"],
   build: {
-    transpile:['@heroicons/vue']
+    transpile: ["@heroicons/vue"],
   },
-  runtimeConfig:{
+  runtimeConfig: {
     jwtAccessSecret: process.env.JWT_ACCESS_TOKEN_SECRET,
     jwtRefreshSecret: process.env.JWT_REFRESH_TOKEN_SECRET,
     //Cloudinary
@@ -14,6 +14,6 @@ export default defineNuxtConfig({
     cloudinaryApiSecret: process.env.CLOUDINARY_API_SECRET,
   },
   routeRules: {
-    '/api/**': { cors: true, headers: { 'access-control-allow-methods': 'POST' } },
-  }
-})
+    "/api/**": { cors: true, cache: false, swr: false },
+  },
+});
