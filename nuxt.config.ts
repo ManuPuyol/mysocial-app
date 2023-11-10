@@ -14,6 +14,7 @@ export default defineNuxtConfig({
     cloudinaryApiSecret: process.env.CLOUDINARY_API_SECRET,
   },
   routeRules: {
-    "/api/**": { cors: true, cache: false, swr: false },
+    "/**": { swr: 3600 },
+    "/api/**": { swr: false, cache: false},
   },
 });
