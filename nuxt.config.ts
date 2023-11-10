@@ -15,6 +15,6 @@ export default defineNuxtConfig({
   },
   routeRules: {
     "/**": { swr: 3600 },
-    "/api/**": { swr: false, cache: false},
+    "/api/auth": { swr: false, cache: false},
   },
 });
