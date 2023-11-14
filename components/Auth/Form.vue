@@ -41,7 +41,12 @@ async function handleLogin() {
       password: data.password,
     });
   } catch (error) {
-    console.log(error);
+    console.error('Error en la solicitud:', error);
+        if (error.response) {
+            // El servidor ha respondido con un estado de error (por ejemplo, 405)
+            console.log('Estado de la respuesta:', error.response.status);
+            console.log('Datos de la respuesta:', error.response.data);
+        }
   } finally {
     data.loading = false;
   }
