@@ -21,10 +21,13 @@ export default () => {
       try {
         const data = await $fetch("/api/auth/login", {
           method: "post",
-          body: {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
             username,
             password,
-          },
+          }),
         });
         
         setToken(data.access_token);
