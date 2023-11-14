@@ -23,6 +23,7 @@ export default () => {
           method: "post",
           headers: {
             "Content-Type": "application/json",
+            "Access-Control-Allow-Origin":"*"
           },
           body: JSON.stringify({
             username,
