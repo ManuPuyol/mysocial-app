@@ -20,11 +20,7 @@ export default () => {
     return new Promise(async (resolve, reject) => {
       try {
         const data = await $fetch("/api/auth/login", {
-          method: "post",
-          headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin":"*"
-          },
+          method: "POST",
           body: JSON.stringify({
             username,
             password,
