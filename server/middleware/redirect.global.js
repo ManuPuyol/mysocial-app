@@ -8,5 +8,9 @@ export default defineEventHandler((event) => {
       urlObj.protocol = "https:";
       sendRedirect(event, urlObj.href);
     }
+    if(!urlObj.host.startsWith('www.')){
+        urlObj.host = 'www.' + urlObj.host;
+        sendRedirect(event, urlObj.href);
+    }
   }
 });
