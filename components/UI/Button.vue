@@ -1,8 +1,8 @@
 <template>
   <button
-    class="flex justify-center text-white bg-orange-400 rounded-full hover:bg-orange-500 font-sm disabled:bg-orange-300 disabled:cursor-not-allowed"
+    class="flex justify-center text-white bg-orange-400 rounded-lg hover:bg-orange-500 font-sm disabled:bg-orange-300 disabled:cursor-not-allowed"
     :disabled="props.disabled"
-    :class="classes"
+    :class="[classes,generalClasses]"
     @click="handleClick"
   >
     <span :class="textFontSize">
@@ -26,6 +26,10 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  color: {
+    type: String,
+    default: "orange"
+  }
 });
 const paddingClasses = computed(() => {
   switch (props.size) {
@@ -54,6 +58,9 @@ const defaultWidth = computed(() => {
 const classes = computed(
   () => `${paddingClasses.value} ${props.liquid ? "w-full" : defaultWidth.value}`
 );
+const generalClasses = computed(
+  () => `flex justify-center text-white bg-${props.color}-400 rounded-md hover:bg-${props.color}-500 font-sm disabled:bg-${props.color}-300 disabled:cursor-not-allowed`
+)
 function handleClick(event) {
     emits('onClick', event)
 }

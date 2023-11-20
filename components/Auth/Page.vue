@@ -7,11 +7,56 @@
         alt=""
       />
     </div>
-    <div class="flex flex-col justify-center flex-1 px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
-        <div class="flex items-center w-full h-full max-w-sm mx-auto lg:w-96">
-            <AuthForm/>
-        </div>
+    <div
+      class="flex flex-col justify-center flex-1 px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24"
+    >
+      <div class="flex items-center w-full h-full max-w-sm mx-auto lg:w-96">
+        <Transition mode="out-in" name="bounce" >
+        <AuthForm @register="handleRegister" v-if="!register" />
+        <AuthRegisterForm @register="handleRegister" v-else></AuthRegisterForm>
+      </Transition>
+      </div>
     </div>
   </div>
 </template>
-<script setup></script>
+<script setup>
+const register = ref(false);
+
+function handleRegister(data) {
+  register.value = data.register;
+}
+</script>
+
+<style>
+.bounce-enter-active {
+  animation: bounce-in 0.8s;
+}
+.bounce-leave-active {
+  animation: bounce-in 0.8s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+*/
+.slide-fade-enter-active {
+  transition: all 0s ease-out;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateX(20px);
+  opacity: 0;
+}
+</style>

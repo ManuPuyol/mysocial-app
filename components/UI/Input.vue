@@ -10,11 +10,14 @@
       <input
         :value="props.modelValue"
         @input="(event) => emits('update:modelValue', event.target.value)"
-        class="block px-4 w-full border-gray-300 rounded-full shadow-sm focus:ring-orange-500 focus:border-orange-500 sm_text-sm"
+        class="block px-4 w-full border-gray-300 rounded-md shadow-sm focus:ring-orange-500 focus:border-orange-500 sm_text-sm"
         :type="props.type"
         :placeholder="props.placeholder"
       />
     </div>
+
+
+    
   </div>
 </template>
 <script setup>
