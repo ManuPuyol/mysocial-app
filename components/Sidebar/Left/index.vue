@@ -1,7 +1,7 @@
 <template>
   <div class="h-screen flex flex-col">
     <div
-      class="p-2 my-2 rounded-full hover:bg-orange-100 w-min dark:hover:bg-white/20"
+      class="p-2 my-2 rounded-full hover:bg-lime-100 w-min dark:hover:bg-white/20"
       :class="defaultTransition"
     >
       <nuxt-link to="/">

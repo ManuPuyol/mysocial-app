@@ -11,7 +11,7 @@
       </span>
       <p v-if="props.post.replyTo" class="text-sm">
         <span class="text-gray-500">Replying to </span>
-        <nuxt-link :to="replyToPostUrl" class="text-orange-400">{{
+        <nuxt-link :to="replyToPostUrl" class="text-lime-400">{{
           props.post.replyTo.author.handle
         }}</nuxt-link>
       </p>

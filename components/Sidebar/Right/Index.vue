@@ -11,7 +11,7 @@
       </div>
       <input
         v-model="search"
-        class="flex items-center w-full pl-12 text-black text-sm font-normal dark:text-gray-100 bg-gray-200 border border-gray-200 rounded-full shadow dark:bg-dim-400 dark:border-dim-400 focus:bg-gray-100 dark:focus:bg-dim-900 focus:outline-none focus:border focus:border-orange-200 h-9"
+        class="flex items-center w-full pl-12 text-black text-sm font-normal dark:text-gray-100 bg-gray-200 border border-gray-200 rounded-full shadow dark:bg-dim-400 dark:border-dim-400 focus:bg-gray-100 dark:focus:bg-dim-900 focus:outline-none focus:border focus:border-lime-200 h-9"
         placeholder="Search dev posts"
         type="text"
       />

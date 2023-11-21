@@ -1,6 +1,6 @@
 <template>
   <div class="flex items-center justify-around">
-    <PostItemActionsIcon color="orange" @on-click="emits('onCommentClick')" :size="size">
+    <PostItemActionsIcon color="lime" @on-click="emits('onCommentClick')" :size="size">
       <template v-slot:icon="{ classes }">
         <div>
           <ChatBubbleLeftEllipsisIcon :class="classes" />
@@ -27,7 +27,7 @@
       <template v-if="showStats" v-slot:default> {{ generateRandomNumber() }} </template>
     </PostItemActionsIcon>
 
-    <PostItemActionsIcon color="orange" :size="size">
+    <PostItemActionsIcon color="lime" :size="size">
       <template v-slot:icon="{ classes }">
         <div>
           <ArrowUpTrayIcon :class="classes" />
