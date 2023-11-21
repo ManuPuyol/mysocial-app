@@ -48,7 +48,7 @@
         </template>
         <template v-slot:name> Lists </template>
       </SidebarLeftTab>
-      <SidebarLeftTab>
+      <SidebarLeftTab to="profile">
         <template v-slot:icon>
           <UserIcon />
         </template>

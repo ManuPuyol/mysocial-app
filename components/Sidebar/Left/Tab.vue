@@ -1,6 +1,6 @@
 <template>
   <nuxt-link
-    to="#"
+    :to="props.to"
     class="flex items-center p-3 w-min hover:bg-gray-200 text-black rounded-full dark:hover:bg-dim-200 dark:text-white"
     :class="defaultTransition"
   >
@@ -19,6 +19,10 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  to: {
+    type: String,
+    default: '#'
+  }
 });
 const textClasses = computed(() =>
   props.active ? "font-semibold" : "font-normal"
