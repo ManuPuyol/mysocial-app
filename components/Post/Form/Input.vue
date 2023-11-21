@@ -11,7 +11,7 @@
       <div class="w-full p-2">
         <textarea
           v-model="text"
-          class="w-full h-10 text-lg text-gray-900 placeholder:text-gray-400 bg-transparent border-0 dark:text.white focus:ring-0"
+          class="w-full h-10 text-lg text-gray-900 placeholder:text-gray-400 bg-transparent border-0 dark:text-white focus:ring-0"
           :placeholder="props.placeholder"
         ></textarea>
       </div>
@@ -37,7 +37,7 @@
     <div class="flex p-2 pl-14">
       <div class="flex w-full text-white">
         <div
-          class="p-2 text-lime-400 rounded-full hover:bg-lime-50 dark:hover:bg-lime-800 cursor-pointer"
+          class="p-2 text-lime-400 rounded-full hover:bg-lime-50 dark:hover:bg-dim-800 cursor-pointer"
           @click="handleImageClick"
         >
           <svg viewBox="0 0 24 24" class="w-5 h-5" fill="currentColor">
@@ -75,7 +75,7 @@
           </svg>
         </div>
         <div
-          class="p-2 text-lime-400 rounded-full hover:bg-lime-50 dark:hover:bg-lime-800 cursor-pointer"
+          class="p-2 text-lime-400 rounded-full hover:bg-lime-50 dark:hover:bg-dim-800 cursor-pointer"
         >
           <svg viewBox="0 0 24 24" class="w-5 h-5" fill="currentColor">
             <g>
@@ -91,7 +91,7 @@
           </svg>
         </div>
         <div
-          class="p-2 text-lime-400 rounded-full hover:bg-lime-50 dark:hover:bg-lime-800 cursor-pointer"
+          class="p-2 text-lime-400 rounded-full hover:bg-lime-50 dark:hover:bg-dim-800 cursor-pointer"
         >
           <svg viewBox="0 0 24 24" class="w-5 h-5" fill="currentColor">
             <g>
