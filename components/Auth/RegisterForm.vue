@@ -3,10 +3,11 @@
     class="w-full p-6 m-auto bg-white border-t border-lime-600 rounded shadow-lg shadow-lime-800/50 lg:max-w-md"
   >
     <div class="flex justify-center">
-      <h2 class="text-lg font-bold text-lime-400">Register</h2>
+      <h2 class="text-lg text-lime-400">Register</h2>
     </div>
     <div class="pt-5 space-y-6">
       <UIInput label="Username" v-model="data.username" />
+      <UIInput label="Name" v-model="data.name" />
       <UIInput label="Email" type="email" v-model="data.email" />
       <UIInput label="Password" type="password" v-model="data.password" />
       <UIInput
@@ -14,7 +15,7 @@
         type="password"
         v-model="data.repeatPassword"
       />
-      <UIButton liquid> Register </UIButton>
+      <UIButton liquid @click="handleRegister"> Register </UIButton>
       <button
         @click="activeLoginForm"
         type="button"
@@ -46,6 +47,7 @@ const data = reactive({
   repeatPassword: "",
   email: "",
   username: "",
+  name: "",
   loading: false,
 });
 
@@ -54,5 +56,28 @@ function activeLoginForm() {
   emits("register", {
     register: false,
   });
+}
+
+async function handleRegister() {
+  const { register, login } = useAuth();
+  data.loading = true;
+  try {
+    await register({
+      username: data.username,
+      name: data.name,
+      email: data.email,
+      password: data.password,
+      repeatPassword: data.repeatPassword,
+    });
+
+    await login({
+      username: data.username,
+      password: data.password,
+    });
+  } catch (error) {
+    console.error("Error en la solicitud:", error);
+  } finally {
+    data.loading = false;
+  }
 }
 </script>

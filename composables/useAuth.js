@@ -16,7 +16,6 @@ export default () => {
     authLoading.value = value;
   };
   const login = ({ username, password }) => {
-    
     return new Promise(async (resolve, reject) => {
       try {
         const data = await $fetch("/api/auth/login", {
@@ -26,11 +25,30 @@ export default () => {
             password,
           }),
         });
-        
+
         setToken(data.access_token);
         setUser(data.user);
         resolve(true);
       } catch (error) {
+        reject(error);
+      }
+    });
+  };
+  const register = ({ username, email, name, password, repeatPassword }) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const data = await $fetch("/api/auth/register", {
+          method: "POST",
+          body: JSON.stringify({
+            username,
+            name,
+            email,
+            password,
+            repeatPassword,
+          }),
+        });
+        resolve(true);
+      } catch(error) {
         reject(error);
       }
     });
@@ -91,13 +109,13 @@ export default () => {
     return new Promise(async (resolve, reject) => {
       try {
         await useFetchApi("/api/auth/logout", {
-          method: 'POST'
+          method: "POST",
         });
         setToken(null);
         setUser(null);
         resolve();
       } catch (error) {
-        reject(error)
+        reject(error);
       }
     });
   };
@@ -107,6 +125,7 @@ export default () => {
     useAuthToken,
     initAuth,
     useAuthLoading,
-    logout
+    logout,
+    register,
   };
 };
