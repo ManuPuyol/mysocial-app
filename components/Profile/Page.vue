@@ -1,7 +1,13 @@
 <template>
-    <ProfileBanner/>
+    <ProfileBanner :user="user"/>
     <ProfileFeed/>
 </template>
-<script setup> </script>
+<script setup>
+
+const { useAuthUser } = useAuth();
+const user = useAuthUser();
+
+
+</script>
 
 

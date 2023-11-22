@@ -1,12 +1,12 @@
 <template>
-  <div class="h-screen flex flex-col">
+  <div class="h-screen flex flex-col items-center">
     <div
       class="p-2 my-2 rounded-full hover:bg-lime-100 w-min dark:hover:bg-white/20"
       :class="defaultTransition"
     >
       <nuxt-link to="/">
-        <div class="w-8 h-8">
-          <LogoKraken />
+        <div class="w-12 h-10">
+            <LogoKraken />
         </div>
       </nuxt-link>
     </div>

@@ -1,10 +1,12 @@
+
 export const userTransformer = (user) =>{
     return {
-        id: user.name,
+        id: user.id,
         name: user.name,
         email: user.email,
         username: user.username,
         profileImage: user.profileImage,
-        handle: '@' + user.username
+        handle: '@' + user.username,
+        createdAt: new Date(user.createdAt).toLocaleDateString("en-US")
     }
 }
