@@ -1,26 +1,36 @@
 <template>
   <div>
-
-    <div class=" h-2/4 sm:h-64 overflow-hidden">
-      <img class="w-full"
+    <div class="h-2/4 sm:h-64 overflow-hidden">
+      <img
+        class="w-full"
         src="https://images.unsplash.com/photo-1638803040283-7a5ffd48dad5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
-        alt="Photo by aldi sigun on Unsplash" />
+        alt="Photo by aldi sigun on Unsplash"
+      />
     </div>
-   
-    <ProfileBannerUserData :user="user"/>
-    <button>editar</button>
+
+    <div class="flex justify-around gap-20">
+      <div>
+        <ProfileBannerUserData :user="user" />
+
+      </div>
+
+      <div class="py-4">
+      <button
+      class="px-4 py-2 font-bold text-xs text-white dark:text-black bg-black dark:bg-white rounded-full"
+    >
+      Edit profile
+    </button>
+    </div>
+    </div>
     
   </div>
 </template>
 
 <script setup>
-
 const props = defineProps({
   user: {
     type: Object,
     required: true,
   },
 });
-
-
 </script>

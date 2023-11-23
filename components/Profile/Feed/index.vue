@@ -1,8 +1,12 @@
 <template>
     <div>
-        componente de feed
+        <ProfileFeedTabList :tabList="tabList"/>
     </div>
     
 </template>
-<script setup> </script>
+<script setup> 
+
+const tabList = ref(['Posts','Likes','Follows'])
+
+</script>
 

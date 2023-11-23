@@ -1,10 +1,11 @@
 <template>
   <div class="flex justify-start px-5 -mt-12 mb-5">
-    <span clspanss="block relative h-32 w-32">
+    
+    <span >
       <img
         alt="img"
         :src="props.user.profileImage"
-        class="mx-auto object-cover rounded-full h-24 w-24 bg-white p-1"
+        class="mx-auto object-cover rounded-full h-32 w-32 bg-white p-1"
       />
     </span>
   </div>
