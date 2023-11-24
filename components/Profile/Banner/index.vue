@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="h-2/4 sm:h-64 overflow-hidden">
+    <div class="h-40 h-2/4  xs:h-64 overflow-hidden">
       <img
         class="w-full"
         src="https://images.unsplash.com/photo-1638803040283-7a5ffd48dad5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
@@ -8,7 +8,7 @@
       />
     </div>
 
-    <div class="flex justify-around gap-20">
+    <div class="flex justify-around lg:gap-24 md:gap-24">
       <div>
         <ProfileBannerUserData :user="user" />
 
