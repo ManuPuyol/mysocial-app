@@ -4,9 +4,12 @@
 </template>
 <script setup>
 
-const { useAuthUser } = useAuth();
-const user = useAuthUser();
-
+const props = defineProps({
+    user:{
+        type: Object,
+        default: null
+    }
+})
 
 </script>
 
